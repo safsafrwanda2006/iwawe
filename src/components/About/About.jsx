@@ -1,5 +1,6 @@
 import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
+import BeforeAfterSlider from '../BeforeAfterSlider/BeforeAfterSlider';
 import './About.css';
 
 const About = () => {
@@ -16,7 +17,12 @@ const About = () => {
     <section id="about" className="about section-padding">
       <div className="container about-container">
         <div className="about-image-wrapper reveal slide-left">
-          <img src="/images/image2.webp" alt="Professional Cleaners at work" className="about-image" />
+          <BeforeAfterSlider
+            beforeSrc="/images/frames/before.jpg"
+            afterSrc="/images/frames/after.png"
+            beforeAlt="Space before Iwawe cleaning"
+            afterAlt="Space after Iwawe cleaning"
+          />
           <div className="experience-badge">
             <span className="years">Premium</span>
             <span className="text">Quality Service</span>

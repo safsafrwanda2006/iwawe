@@ -1,0 +1,162 @@
+/* ── Container ─────────────────────────────────────────────────────────────── */
+/*
+  Both images are square (~1:1). We honour that exact ratio so no pixel
+  is stretched or cropped — quality is fully preserved.
+*/
+.bas-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* match the natural square shape of both images */
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  user-select: none;
+  cursor: ew-resize;
+  background-color: #0a2540;
+  box-shadow: var(--shadow-lg);
+  touch-action: pan-y;
+}
+
+/* ── Images ─────────────────────────────────────────────────────────────────── */
+.bas-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* contain = never crop, always show whole image at original ratio */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* The BEFORE wrapper clips the before image on the right */
+.bas-before-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
+  will-change: width; /* GPU hint for smooth animation */
+}
+
+/* The before image must fill the wrapper at full container width so it aligns
+   pixel-perfectly with the after image beneath it */
+.bas-before {
+  width: 100vw;     /* wider than wrapper */
+  max-width: 900px; /* cap so it never looks huge on ultra-wide */
+  min-width: 100%;
+}
+
+/* ── Labels ──────────────────────────────────────────────────────────────────── */
+.bas-label {
+  position: absolute;
+  top: 1rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 100px;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 3;
+  backdrop-filter: blur(6px);
+}
+
+.bas-label-before {
+  left: 1rem;
+  background: rgba(10, 37, 64, 0.82);
+  color: #fff;
+}
+
+.bas-label-after {
+  right: 1rem;
+  background: rgba(77, 166, 255, 0.9);
+  color: #fff;
+}
+
+/* ── Divider Line ────────────────────────────────────────────────────────────── */
+.bas-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #ffffff;
+  transform: translateX(-50%);
+  z-index: 4;
+  cursor: ew-resize;
+  box-shadow: 0 0 10px rgba(77, 166, 255, 0.7), 0 0 2px rgba(255,255,255,0.9);
+  transition: box-shadow 0.2s ease;
+}
+
+.bas-divider:focus {
+  outline: none;
+}
+
+.bas-divider.dragging,
+.bas-divider:hover {
+  box-shadow: 0 0 16px rgba(77, 166, 255, 1), 0 0 4px rgba(255,255,255,1);
+}
+
+/* ── Handle (circle with ‹ › arrows) ────────────────────────────────────────── */
+.bas-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #4da6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 4px rgba(255,255,255,0.15);
+  color: var(--primary-blue);
+  pointer-events: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bas-divider.dragging .bas-handle,
+.bas-divider:hover .bas-handle {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* ── Auto-animation hint pulse on the handle ─────────────────────────────────── */
+.bas-handle::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #4da6ff;
+  animation: pulse-ring 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .bas-container {
+    /* keep 1:1 square on mobile too — images look best at their native ratio */
+    aspect-ratio: 1 / 1;
+  }
+
+  .bas-handle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .bas-label {
+    font-size: 0.68rem;
+    padding: 0.22rem 0.65rem;
+  }
+}
