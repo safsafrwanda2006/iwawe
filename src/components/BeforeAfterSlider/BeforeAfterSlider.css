@@ -45,7 +45,7 @@
    pixel-perfectly with the after image beneath it */
 .bas-before {
   width: 100vw;     /* wider than wrapper */
-  max-width: 900px; /* cap so it never looks huge on ultra-wide */
+  max-width: 550px; /* cap so it never looks huge on ultra-wide */
   min-width: 100%;
 }
 

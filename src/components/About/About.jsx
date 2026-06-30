@@ -18,7 +18,7 @@ const About = () => {
       <div className="container about-container">
         <div className="about-image-wrapper reveal slide-left">
           <BeforeAfterSlider
-            beforeSrc="/images/frames/before.jpg"
+            beforeSrc="/images/frames/before.png"
             afterSrc="/images/frames/after.png"
             beforeAlt="Space before Iwawe cleaning"
             afterAlt="Space after Iwawe cleaning"
