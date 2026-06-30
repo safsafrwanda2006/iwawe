@@ -1,0 +1,150 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: var(--transition);
+  padding: 1.5rem 0;
+  background-color: transparent;
+}
+
+.navbar.scrolled {
+  background-color: var(--bg-white);
+  padding: 1rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar.scrolled .logo,
+.navbar.scrolled .nav-links a,
+.navbar.scrolled .nav-phone,
+.navbar.scrolled .mobile-menu-btn {
+  color: var(--primary-blue);
+}
+
+.logo,
+.nav-links a,
+.nav-phone,
+.mobile-menu-btn {
+  color: var(--accent-white);
+  transition: var(--transition);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #4da6ff; /* Light blue matching the hero highlight */
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-links a {
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-phone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.mobile-menu-btn {
+  display: none;
+}
+
+/* Mobile Menu */
+.mobile-nav {
+  position: fixed;
+  top: 72px; /* Approx height of scrolled navbar */
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-white);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-150%);
+  transition: transform 0.4s ease-in-out;
+  z-index: 999;
+}
+
+.mobile-nav.open {
+  transform: translateY(0);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.mobile-nav-links a {
+  color: var(--primary-blue);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.mobile-nav-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-blue);
+  font-weight: 600;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 992px) {
+  .nav-links {
+    display: none;
+  }
+  .nav-phone {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+  .navbar {
+    padding: 1rem 0;
+  }
+  
+  /* Ensure mobile btn is white when not scrolled on hero */
+  .navbar:not(.scrolled) .mobile-menu-btn {
+    color: var(--accent-white);
+  }
+}

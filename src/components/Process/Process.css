@@ -1,0 +1,141 @@
+.process {
+  background-color: var(--bg-white);
+  padding: var(--section-padding);
+}
+
+.timeline-container {
+  max-width: 900px;
+  margin: 4rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-content, .timeline-empty {
+  flex: 1;
+  padding: 0 3rem;
+  padding-bottom: 4rem;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  text-align: right;
+}
+
+.timeline-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 80px;
+}
+
+.timeline-icon {
+  width: 64px;
+  height: 64px;
+  background-color: var(--primary-blue);
+  color: var(--accent-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 0 0 8px var(--bg-white), var(--shadow-md);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.timeline-item:hover .timeline-icon {
+  background-color: var(--secondary-blue);
+  transform: scale(1.1);
+}
+
+.timeline-line {
+  position: absolute;
+  top: 64px;
+  bottom: -64px;
+  width: 4px;
+  background-color: var(--border-color);
+  z-index: 1;
+}
+
+.timeline-icon-mobile {
+  display: none;
+}
+
+.step-number {
+  color: var(--secondary-blue);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.timeline-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-blue);
+}
+
+.timeline-description {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .timeline-item, .timeline-item:nth-child(even) {
+    flex-direction: column;
+  }
+  
+  .timeline-center, .timeline-empty {
+    display: none;
+  }
+  
+  .timeline-content, .timeline-item:nth-child(even) .timeline-content {
+    text-align: left;
+    padding: 0;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 5rem;
+  }
+  
+  .timeline-icon-mobile {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 48px;
+    height: 48px;
+    background-color: var(--primary-blue);
+    color: var(--accent-white);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Create mobile connecting line */
+  .timeline-container {
+    position: relative;
+    margin-top: 3rem;
+  }
+  
+  .timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border-color);
+    z-index: -1;
+  }
+}
