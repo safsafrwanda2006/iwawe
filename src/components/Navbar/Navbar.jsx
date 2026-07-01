@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
-import './Navbar.css';
+import React, { useState, useEffect } from "react";
+import { Menu, X, Phone } from "lucide-react";
+import "./Navbar.css";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -10,24 +10,27 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Gallery', href: '#gallery' },
-    { name: 'Contact', href: '#contact' },
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Gallery", href: "#gallery" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="container navbar-container">
-        <a href="#home" className="logo">
-          IWAWE
-        </a>
+        <div className="logo">
+          <a href="/">
+            IWAWE
+          </a>
+          <span className="cleaning-service">Cleaning Services</span>
+        </div>
 
         {/* Desktop Nav */}
         <ul className="nav-links">
@@ -41,9 +44,9 @@ const Navbar = () => {
         <div className="nav-actions">
           <a href="tel:+250784033917" className="nav-phone">
             <Phone size={18} />
-            <span>+250 784 033 917</span>
+            <span>Book Your Service Now</span>
           </a>
-          <button 
+          <button
             className="mobile-menu-btn"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
@@ -54,14 +57,11 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Nav */}
-      <div className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
+      <div className={`mobile-nav ${isMobileMenuOpen ? "open" : ""}`}>
         <ul className="mobile-nav-links">
           {navLinks.map((link) => (
             <li key={link.name}>
-              <a 
-                href={link.href} 
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
+              <a href={link.href} onClick={() => setIsMobileMenuOpen(false)}>
                 {link.name}
               </a>
             </li>

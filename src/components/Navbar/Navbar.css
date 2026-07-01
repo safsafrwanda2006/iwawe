@@ -11,15 +11,23 @@
 
 .navbar.scrolled {
   background-color: var(--bg-white);
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
   box-shadow: var(--shadow-sm);
 }
 
-.navbar.scrolled .logo,
+
 .navbar.scrolled .nav-links a,
 .navbar.scrolled .nav-phone,
-.navbar.scrolled .mobile-menu-btn {
+.navbar.scrolled .mobile-menu-btn,
+.navbar.scrolled .cleaning-service {
   color: var(--primary-blue);
+}
+.navbar.scrolled .logo {
+  color: #4da6ff;
+}
+.navbar.scrolled .cleaning-service {
+  font-weight: 600;
+  color: #4da6ff;
 }
 
 .logo,
@@ -29,6 +37,7 @@
   color: var(--accent-white);
   transition: var(--transition);
 }
+
 
 .navbar-container {
   display: flex;
@@ -41,7 +50,12 @@
   font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: 2px;
-  color: #4da6ff; /* Light blue matching the hero highlight */
+  color: #4da6ff;
+}
+.cleaning-service {
+  color: var(--bg-white);
+  font-weight: 400;
+  font-size: 1.3rem;
 }
 
 .nav-links {
@@ -56,7 +70,7 @@
 }
 
 .nav-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -4px;
   left: 0;
@@ -117,6 +131,12 @@
   font-size: 1.25rem;
   font-weight: 600;
 }
+.navbar:not(.scrolled) .mobile-nav{
+  background-color: var(--primary-blue);
+}
+.navbar:not(.scrolled) .mobile-nav-links a{
+  color: var(--bg-white);
+}
 
 .mobile-nav-phone {
   display: inline-flex;
@@ -127,24 +147,47 @@
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border-color);
+  color:white;
 }
+
 
 @media (max-width: 992px) {
   .nav-links {
     display: none;
   }
-  .nav-phone {
-    display: none;
-  }
+
   .mobile-menu-btn {
     display: block;
   }
+
   .navbar {
     padding: 1rem 0;
   }
-  
+
   /* Ensure mobile btn is white when not scrolled on hero */
   .navbar:not(.scrolled) .mobile-menu-btn {
     color: var(--accent-white);
+  }
+  
+  .logo {
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 0px;
+    gap: 0;
+    padding: 0;
+  }
+  .cleaning-service {
+    margin-top: -15px;
+    padding: 0;
+  }
+  .mobile-nav {
+    top: 95px;
+    color: white;
+  }
+}
+
+@media (max-width: 700px) {
+  .nav-phone {
+    display: none;
   }
 }
